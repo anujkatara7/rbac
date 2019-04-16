@@ -1,0 +1,25 @@
+<div class="container">
+        <h1 class="text-center">Register with Adi</h1>
+
+        {% if registered %}
+        HOHO says: <strong>thank you for registering!</strong>
+        <a href="/adi/">Return to the homepage.</a><br />
+        {% else %}
+		<div class="row justify-content-center">
+			<div class="col-lg-8 col-md-10 col-sm-12">
+		  	<div class="card">
+					<div class="card-body">
+						<h3 class="card-title">Sign up</h3>
+
+        <form method="post" enctype="multipart/form-data">
+
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" name="submit" value="Register" />
+        </form>
+        {% endif %}
+      </div>
+		</div>
+	</div>
+</div>
+</div>
