@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>{{ title|slice:":60" }}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'DataTables/datatables.min.css' %}"/>
+    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static 'bootstrap4/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/common.css' %}">
+    {% block extra_styles_head %}{% endblock %}
+</head>
+
+{% block body_styles %}
+<body class="bg-light">
+
+    {% block page_sub_title %}{% endblock %}
+ 
+    <main role="main">
+        {% block content %}{% endblock %}
+        <script type="text/javascript" src="{% static 'DataTables/datatables.min.js' %} "></script>
+        <script src="{% static 'bootstrap4/js/popper.min.js' %}" defer></script>
+        <script src="{% static 'bootstrap4/js/bootstrap.min.js' %}" defer></script>
+        <script src="{% static 'bootstrap4/js/holder.min.js' %}" defer></script>
+
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'UA-126199598-1');
+        </script>
+        {% block scripts %}{% endblock %}
+
+        {% block footer %}
+        {% endblock %}
+    </main>
+
+    {% block extra_styles_bottom %}{% endblock %}
+</body>
+{% endblock %}
+</html>

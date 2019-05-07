@@ -5,7 +5,14 @@ from django.contrib.auth.models import Group
 
 class Article(models.Model):
     title = models.TextField()
+    STATUS = (
+        ('pending', 'Pending'),
+        ('InProgress', 'InProgress'),
+        ('approved', 'Approved')
+    )
     content = models.TextField()
+    status = models.CharField(
+        max_length=10, choices=STATUS, default='pending')
 
     class Meta:
         permissions = (

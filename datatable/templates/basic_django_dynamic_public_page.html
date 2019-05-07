@@ -1,0 +1,32 @@
+{% extends "layout_home.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block extra_styles_head %}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 order-md-1">
+                {% if db_data %}
+                    {% for d in db_data %}
+                        <h2 class="display-4 text-bold mt-0">{{ d.full_name }}</h2>
+                        <p class="text-gray-soft lead">
+                            <b>SUBJECT:</b> {{ d.subject }} <br/>
+                            <b>EMAIL:</b> {{ d.email }} <br/>
+                            <b>SUBMITTED:</b> {{ d.submitted|naturaltime }}
+                        </p>
+                        <p class="text-gray-soft lead">
+                            <b>Long Content:</b> <br/>
+                            {{ d.message|safe }}
+                        </p>
+                    {% endfor %}
+                {% else %}
+                    <p>Nothing to display table row.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}{% endblock %}

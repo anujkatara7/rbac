@@ -25,7 +25,7 @@ SECRET_KEY = ')f_yajoltmhd&7d7m-2!nu530ro($y-$do=e8v0-owrc)6f)(y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -41,8 +41,12 @@ INSTALLED_APPS = [
     'perm.apps.PermConfig',
     'perm_api.apps.PermApiConfig',
     'django_excel_to_db.apps.DjangoExcelToDbConfig',
+    'datatable.apps.DatatableConfig',
+    'status.apps.StatusConfig',
     'oauth2_provider',
     'import_export',
+    'django.contrib.humanize',
+    'django_filters',
     # 'corsheaders'
 ]
 
@@ -70,6 +74,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'datatable.global_config.global_settings',
             ],
         },
     },
@@ -89,6 +94,12 @@ REST_FRAMEWORK = {
     # 'DEFAULT_PERMISSION_CLASSES': (
     #     'rest_framework.permissions.IsAuthenticated',
     # )
+    'DEFAULT_FILTER_BACKENDS': (
+        'rest_framework.filters.SearchFilter',
+        'rest_framework.filters.OrderingFilter',
+    ),
+    'SEARCH_PARAM': 'search',
+    'ORDERING_PARAM': 'ordering',
 }
 
 OAUTH2_PROVIDER = {
@@ -152,8 +163,32 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_URL = '/static/'
 # CORS_URLS_REGEX = r'^/api/.*$'
 # CORS_ORIGIN_ALLOW_ALL = True
 FILE_UPLOAD_HANDLERS = ("django_excel.ExcelMemoryFileUploadHandler",
                         "django_excel.TemporaryExcelFileUploadHandler")
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+# Media File's settings
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+# *******************************************
+# My custom configurations
+# *******************************************
+# For base url, include "/" at the end
+BASE_URL = '127.0.0.1/'
+
+# For app labels section here
+APP_LABEL_MYROOT = 'datatable'
+
+# Common Site Information here
+SITE_SHORT_NAME = "{{ PLP }}"
+SITE_FULL_NAME = "Pinoy Learn Python"
+SITE_YEAR_STARTED = "2018"
+SITE_URL_HOME = "127.0.0.1/"
+SITE_SLOGAN = SITE_FULL_NAME + " - To Help Filipino Students to Learn Python!"

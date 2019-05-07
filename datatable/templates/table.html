@@ -1,0 +1,74 @@
+{% load static %}
+
+<!-- <link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css"/>
+
+<script type="text/javascript" src="DataTables/datatables.min.js"></script> -->
+<!-- Latest compiled and minified CSS -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+
+
+<div >
+   <!-- Custom Filter -->
+   <table>
+     <tr>
+       <td>
+         <input type='text' id='searchByName' placeholder='Enter name'>
+       </td>
+       <td>
+         <select id='searchByGender'>
+           <option value=''>-- Select Gender--</option>
+           <option value='male'>Male</option>
+           <option value='female'>Female</option>
+         </select>
+       </td>
+     </tr>
+   </table>
+
+
+<table id='empTable' class="display nowrap" style="width:100%">
+    <!-- table-striped -->
+      <thead class="thead-dark">
+        <tr>
+            <th>Employee Name</th>
+            <th>Employee Email</th>
+            <th>Employee Gender</th>
+            <th>Employee Salary</th>
+            <th>City</th>
+            </tr>
+        </thead>
+        <tbody id="myTable">
+          {% for employee in employees %}
+          <tr>
+            <td>{{ employee.emp_name }}</td>
+            <td>{{ employee.email }}</td>
+            <td>{{ employee.gender }}</td>
+            <td>{{ employee.city }}</td>
+            <td>{{ employee.salary }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+</div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.1/js/buttons.flash.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.1/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.1/js/buttons.print.min.js"></script>
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#empTable').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+            
+        ]
+    } );
+} );
+</script>
