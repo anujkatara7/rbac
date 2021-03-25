@@ -24,7 +24,7 @@ pyexcel-io==0.5.17
 pyexcel-webio==0.1.4
 pyexcel-xls==0.5.8
 pytz==2018.9
-PyYAML==5.1
+PyYAML==5.4
 requests==2.21.0
 simplejson==3.16.0
 tablib==0.13.0
